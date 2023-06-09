@@ -1,0 +1,22 @@
+<div class="chat-container">
+    <div class="message-list">
+        <div
+            *ngFor="let message of messages; let i = index"
+            [ngClass]="getMessageGroupClass(i)">
+            <div class="message-content">
+                <div *ngIf="shouldDisplaySenderName(i)" class="sender">
+                    {{ message.sender }}
+                </div>
+                <div class="message-box">{{ message.content }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="input-container">
+        <input
+            type="text"
+            [(ngModel)]="newMessage"
+            placeholder="Type a message..."
+            (keydown.enter)="sendMessage()" />
+        <button (click)="sendMessage()" [disabled]="!newMessage">Send</button>
+    </div>
+</div>
